@@ -1,0 +1,80 @@
+
+CHATGPT EFFICIENCY EVALUATION - RESULTS SUMMARY
+================================================
+
+OVERALL METRICS
+--------------
+Total Questions Evaluated: 1616
+Overall Accuracy: 85.89%
+Correct Answers: 1388/1616
+Average Response Time: 2213ms
+Total Tokens Used: 311,491
+
+PERFORMANCE BY DOMAIN
+--------------------
+
+History:
+  Questions Evaluated: 645
+  Accuracy: 84.34%
+  Correct Answers: 544/645
+  Avg Response Time: 2204ms
+  Total Tokens: 123,262
+
+Social Science:
+  Questions Evaluated: 583
+  Accuracy: 88.16%
+  Correct Answers: 514/583
+  Avg Response Time: 2192ms
+  Total Tokens: 114,777
+
+Computer Security:
+  Questions Evaluated: 388
+  Accuracy: 85.05%
+  Correct Answers: 330/388
+  Avg Response Time: 2261ms
+  Total Tokens: 73,452
+
+PERFORMANCE BY MODEL
+-------------------
+
+gpt-3.5-turbo:
+  Questions Evaluated: 400
+  Accuracy: 74.50%
+  Correct Answers: 298/400
+  Avg Response Time: 905ms
+  Total Tokens: 73,032
+
+gpt-4:
+  Questions Evaluated: 523
+  Accuracy: 89.29%
+  Correct Answers: 467/523
+  Avg Response Time: 3035ms
+  Total Tokens: 105,812
+
+gpt-4-turbo-preview:
+  Questions Evaluated: 350
+  Accuracy: 89.43%
+  Correct Answers: 313/350
+  Avg Response Time: 2996ms
+  Total Tokens: 69,439
+
+gpt-4o:
+  Questions Evaluated: 193
+  Accuracy: 93.26%
+  Correct Answers: 180/193
+  Avg Response Time: 1788ms
+  Total Tokens: 34,867
+
+gpt-4o-mini:
+  Questions Evaluated: 150
+  Accuracy: 86.67%
+  Correct Answers: 130/150
+  Avg Response Time: 1559ms
+  Total Tokens: 28,341
+
+KEY FINDINGS
+-----------
+- Highest accuracy achieved in Social Science (88.16%)
+- Lowest accuracy in History (84.34%)
+- Fastest response time in Social Science (2192ms)
+- Slowest response time in Computer Security (2261ms)

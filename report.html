@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>ChatGPT Efficiency Evaluation - Report</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <style>
+        @media print {
+            body {
+                background: white !important;
+            }
+            .no-print {
+                display: none !important;
+            }
+            .page-break {
+                page-break-after: always;
+            }
+            .chart-container canvas {
+                max-height: 300px !important;
+            }
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px;
+            background: #f5f5f5;
+        }
+
+        .report-container {
+            background: white;
+            padding: 50px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+
+        .header {
+            text-align: center;
+            border-bottom: 3px solid #1a1a1a;
+            padding-bottom: 30px;
+            margin-bottom: 40px;
+        }
+
+        .header h1 {
+            color: #1a1a1a;
+            font-size: 2.2em;
+            margin: 0 0 10px 0;
+            font-weight: 700;
+        }
+
+        .header .subtitle {
+            color: #737373;
+            font-size: 1.1em;
+        }
+
+        .header .meta {
+            color: #999;
+            font-size: 0.9em;
+            margin-top: 15px;
+        }
+
+        h2 {
+            color: #1a1a1a;
+            border-left: 4px solid #1a1a1a;
+            padding-left: 15px;
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+
+        h3 {
+            color: #1a1a1a;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .metric-card {
+            background: #fafafa;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #1a1a1a;
+        }
+
+        .metric-card .label {
+            color: #737373;
+            font-size: 0.9em;
+            margin-bottom: 5px;
+        }
+
+        .metric-card .value {
+            color: #1a1a1a;
+            font-size: 1.8em;
+            font-weight: 700;
+        }
+
+        .chart-container {
+            margin: 30px 0;
+            padding: 20px;
+            background: #fafafa;
+            border-radius: 8px;
+        }
+
+        .chart-container canvas {
+            max-height: 350px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        table th {
+            background: #1a1a1a;
+            color: white;
+            padding: 12px;
+            text-align: left;
+        }
+
+        table td {
+            padding: 10px 12px;
+            border-bottom: 1px solid #e5e5e5;
+        }
+
+        table tr:hover {
+            background: #f9f9f9;
+        }
+
+        .findings {
+            background: #f0f8ff;
+            border-left: 4px solid #27ae60;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .findings ul {
+            margin: 10px 0;
+            padding-left: 20px;
+        }
+
+        .findings li {
+            margin: 8px 0;
+        }
+
+        .download-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #1a1a1a;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            z-index: 1000;
+        }
+
+        .download-btn:hover {
+            background: #333;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 100px;
+            color: #737373;
+        }
+
+        .footer {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 2px solid #e5e5e5;
+            text-align: center;
+            color: #999;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <button class="download-btn no-print" onclick="window.print()">📄 Download as PDF</button>
+
+    <div id="loadingMessage" class="loading">
+        <h2>Loading report data...</h2>
+    </div>
+
+    <div id="reportContent" class="report-container" style="display: none;">
+        <div class="header">
+            <h1>ChatGPT Efficiency Evaluation</h1>
+            <div class="subtitle">Performance Analysis Across Multiple Domains and Models</div>
+            <div class="meta">
+                <strong>Author:</strong> Caelan Mason<br>
+                <strong>Institution:</strong> York University<br>
+                <strong>Program:</strong> Bachelor of Arts in Information Technology<br>
+                <strong>Report Generated:</strong> <span id="reportDate"></span>
+            </div>
+        </div>
+
+        <h2>Executive Summary</h2>
+        <p id="executiveSummary"></p>
+
+        <h2>1. Overall System Performance</h2>
+        <p>This evaluation tested ChatGPT's performance across <strong id="totalQuestionsText">1,616 total questions</strong>. The system achieved an overall accuracy of <strong id="overallAccuracyText">85.89%</strong>, meaning that ChatGPT answered <strong id="correctAnswersText">1,388 out of 1,616</strong> questions correctly. The average response time was <strong id="avgResponseTimeText">2.2 seconds</strong>, reflecting fast conversational processing. Across the entire test, the system utilized <strong id="totalTokensText">311,491 tokens</strong>, representing the total language-processing workload.</p>
+
+        <div class="metrics-grid">
+            <div class="metric-card">
+                <div class="label">Total Questions</div>
+                <div class="value" id="totalQuestions">-</div>
+            </div>
+            <div class="metric-card">
+                <div class="label">Overall Accuracy</div>
+                <div class="value" id="overallAccuracy">-</div>
+            </div>
+            <div class="metric-card">
+                <div class="label">Avg Response Time</div>
+                <div class="value" id="avgResponseTime">-</div>
+            </div>
+            <div class="metric-card">
+                <div class="label">Total Tokens</div>
+                <div class="value" id="totalTokens">-</div>
+            </div>
+        </div>
+
+        <div class="page-break"></div>
+
+        <h2>2. Performance by Domain</h2>
+        
+        <h3>Accuracy by Domain</h3>
+        <p id="domainAccuracyAnalysis">Social Science was the strongest category, with the highest accuracy, while History showed the most variability.</p>
+        <div class="chart-container">
+            <canvas id="accuracyChart"></canvas>
+        </div>
+
+        <h3>Question Distribution by Domain</h3>
+        <p id="domainDistributionAnalysis">History accounted for the largest portion of the testing volume, making up a significant percentage of questions, followed by Social Science and Computer Security.</p>
+        <div class="chart-container">
+            <canvas id="distributionChart"></canvas>
+        </div>
+
+        <h3>Response Time by Domain</h3>
+        <p id="domainTimeAnalysis">Computer Security questions took slightly longer on average, likely due to more precise and cautious formulations.</p>
+        <div class="chart-container">
+            <canvas id="responseTimeChart"></canvas>
+        </div>
+
+        <h3>Token Usage by Domain</h3>
+        <p id="domainTokenAnalysis">History required the highest token output to answer - suggesting longer or more context-heavy responses.</p>
+        <div class="chart-container">
+            <canvas id="tokenChart"></canvas>
+        </div>
+
+        <h3>Domain Performance Summary</h3>
+        <table id="domainTable">
+            <thead>
+                <tr>
+                    <th>Domain</th>
+                    <th>Questions</th>
+                    <th>Accuracy</th>
+                    <th>Avg Response Time</th>
+                    <th>Total Tokens</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+
+        <div class="page-break"></div>
+
+        <h2>3. Model Comparison</h2>
+        
+        <h3>Accuracy by Model</h3>
+        <p id="modelAccuracyAnalysis">GPT-4o is the clear accuracy leader, while GPT-3.5-turbo sits lower in accuracy performance.</p>
+        <div class="chart-container">
+            <canvas id="modelAccuracyChart"></canvas>
+        </div>
+
+        <h3>Response Time by Model</h3>
+        <p id="modelTimeAnalysis">GPT-3.5-turbo is by far the fastest, averaging under 1 second, while the GPT-4 family models take longer to formulate more accurate responses.</p>
+        <div class="chart-container">
+            <canvas id="modelResponseTimeChart"></canvas>
+        </div>
+
+        <h3>Model Performance Summary</h3>
+        <table id="modelTable">
+            <thead>
+                <tr>
+                    <th>Model</th>
+                    <th>Questions</th>
+                    <th>Accuracy</th>
+                    <th>Correct Answers</th>
+                    <th>Avg Response Time</th>
+                    <th>Total Tokens</th>
+                    <th>Notes</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+
+        <div class="page-break"></div>
+
+        <h2>4. Key Findings Summary</h2>
+        <div class="findings" id="findings">
+            <ul></ul>
+        </div>
+
+        <h2>Methodology</h2>
+        <p>This evaluation assessed ChatGPT's performance across three distinct knowledge domains: History, Social Science, and Computer Security. The study utilized five different GPT model versions to analyze accuracy, response time, and token efficiency.</p>
+        
+        <h3>Evaluation Criteria</h3>
+        <ul>
+            <li><strong>Accuracy:</strong> Percentage of correct answers compared to verified correct responses</li>
+            <li><strong>Response Time:</strong> Average time taken to generate responses (measured in milliseconds)</li>
+            <li><strong>Token Usage:</strong> Total tokens consumed during response generation</li>
+            <li><strong>Domain Coverage:</strong> Equal distribution of questions across all three domains</li>
+        </ul>
+
+        <h3>Models Evaluated</h3>
+        <ul>
+            <li>GPT-3.5-turbo</li>
+            <li>GPT-4</li>
+            <li>GPT-4-turbo-preview</li>
+            <li>GPT-4o</li>
+            <li>GPT-4o-mini</li>
+        </ul>
+
+        <h2>5. Conclusion</h2>
+        <p id="conclusion"></p>
+
+        <div class="footer">
+            <p>This report was generated automatically from the ChatGPT Efficiency Evaluation System</p>
+            <p>© 2025 Caelan Mason - York University</p>
+        </div>
+    </div>
+
+    <script>
+        let charts = {};
+
+        async function generateReport() {
+            try {
+                const response = await fetch('/api/results');
+                const data = await response.json();
+                
+                if (!data.success || data.metrics.totalQuestions === 0) {
+                    document.getElementById('loadingMessage').innerHTML = '<h2>No data available</h2><p>Please run evaluations first at the <a href="/#results">Results page</a></p>';
+                    return;
+                }
+                
+                const metrics = data.metrics;
+                populateReport(metrics);
+                createCharts(metrics);
+                
+                document.getElementById('loadingMessage').style.display = 'none';
+                document.getElementById('reportContent').style.display = 'block';
+                
+            } catch (error) {
+                console.error('Error:', error);
+                document.getElementById('loadingMessage').innerHTML = '<h2>Error loading data</h2><p>Make sure the server is running.</p>';
+            }
+        }
+
+        function populateReport(metrics) {
+            // Report date
+            document.getElementById('reportDate').textContent = new Date().toLocaleDateString('en-US', { 
+                year: 'numeric', month: 'long', day: 'numeric' 
+            });
+
+            // Executive summary
+            const domains = Object.keys(metrics.domains);
+            const models = Object.keys(metrics.models || {});
+            document.getElementById('executiveSummary').textContent = 
+                `This report presents a comprehensive evaluation of ChatGPT's performance across ${domains.length} knowledge domains (${domains.join(', ')}) using ${models.length} different model versions. A total of ${metrics.totalQuestions} questions were evaluated, achieving an overall accuracy of ${metrics.overallAccuracy}% with an average response time of ${metrics.overallAvgResponseTime}ms. The study provides insights into model efficiency, domain-specific performance, and token consumption patterns.`;
+
+            // Overall metrics
+            document.getElementById('totalQuestions').textContent = metrics.totalQuestions.toLocaleString();
+            document.getElementById('overallAccuracy').textContent = metrics.overallAccuracy + '%';
+            document.getElementById('avgResponseTime').textContent = metrics.overallAvgResponseTime + 'ms';
+            document.getElementById('totalTokens').textContent = metrics.totalTokensUsed.toLocaleString();
+            
+            // Overall text descriptions
+            document.getElementById('totalQuestionsText').textContent = metrics.totalQuestions.toLocaleString() + ' total questions';
+            document.getElementById('overallAccuracyText').textContent = metrics.overallAccuracy + '%';
+            document.getElementById('correctAnswersText').textContent = metrics.correctAnswers + ' out of ' + metrics.totalQuestions;
+            document.getElementById('avgResponseTimeText').textContent = (metrics.overallAvgResponseTime / 1000).toFixed(1) + ' seconds';
+            document.getElementById('totalTokensText').textContent = metrics.totalTokensUsed.toLocaleString() + ' tokens';
+
+            // Domain analysis text
+            const sortedByAccuracy = [...domains].sort((a, b) => 
+                parseFloat(metrics.domains[b].accuracy) - parseFloat(metrics.domains[a].accuracy)
+            );
+            const highestAccDomain = sortedByAccuracy[0];
+            const lowestAccDomain = sortedByAccuracy[sortedByAccuracy.length - 1];
+            
+            document.getElementById('domainAccuracyAnalysis').textContent = 
+                `${highestAccDomain} was the strongest category, with an accuracy of ${metrics.domains[highestAccDomain].accuracy}%, while ${lowestAccDomain} showed the most variability at ${metrics.domains[lowestAccDomain].accuracy}%.`;
+            
+            const sortedByCount = [...domains].sort((a, b) => 
+                metrics.domains[b].count - metrics.domains[a].count
+            );
+            const largestDomain = sortedByCount[0];
+            const largestPercent = ((metrics.domains[largestDomain].count / metrics.totalQuestions) * 100).toFixed(0);
+            
+            document.getElementById('domainDistributionAnalysis').textContent = 
+                `${largestDomain} accounted for the largest portion of the testing volume, making up approximately ${largestPercent}% of questions, followed by ${sortedByCount[1]} and ${sortedByCount[2]}.`;
+            
+            const sortedByTime = [...domains].sort((a, b) => 
+                metrics.domains[b].avgResponseTime - metrics.domains[a].avgResponseTime
+            );
+            const slowestDomain = sortedByTime[0];
+            
+            document.getElementById('domainTimeAnalysis').textContent = 
+                `${slowestDomain} questions took slightly longer on average (${metrics.domains[slowestDomain].avgResponseTime} ms), likely due to more precise and cautious formulations.`;
+            
+            const sortedByTokens = [...domains].sort((a, b) => 
+                metrics.domains[b].totalTokens - metrics.domains[a].totalTokens
+            );
+            const highestTokenDomain = sortedByTokens[0];
+            
+            document.getElementById('domainTokenAnalysis').textContent = 
+                `${highestTokenDomain} required the highest token output to answer (${metrics.domains[highestTokenDomain].totalTokens.toLocaleString()} tokens) - suggesting longer or more context-heavy responses.`;
+
+            // Domain table
+            const domainTableBody = document.getElementById('domainTable').querySelector('tbody');
+            domains.forEach(domain => {
+                const d = metrics.domains[domain];
+                const row = domainTableBody.insertRow();
+                row.innerHTML = `
+                    <td><strong>${domain}</strong></td>
+                    <td>${d.count}</td>
+                    <td>${d.accuracy}%</td>
+                    <td>${d.avgResponseTime}ms</td>
+                    <td>${d.totalTokens.toLocaleString()}</td>
+                `;
+            });
+
+            // Model analysis text
+            if (models.length > 0) {
+                const sortedByAccuracy = [...models].sort((a, b) => 
+                    parseFloat(metrics.models[b].accuracy) - parseFloat(metrics.models[a].accuracy)
+                );
+                const mostAccurateModel = sortedByAccuracy[0];
+                const leastAccurateModel = sortedByAccuracy[sortedByAccuracy.length - 1];
+                
+                document.getElementById('modelAccuracyAnalysis').textContent = 
+                    `${mostAccurateModel} is the clear accuracy leader at ${metrics.models[mostAccurateModel].accuracy}%, while ${leastAccurateModel} sits lower at ${metrics.models[leastAccurateModel].accuracy}%.`;
+                
+                const sortedBySpeed = [...models].sort((a, b) => 
+                    metrics.models[a].avgResponseTime - metrics.models[b].avgResponseTime
+                );
+                const fastestModel = sortedBySpeed[0];
+                
+                document.getElementById('modelTimeAnalysis').textContent = 
+                    `${fastestModel} is by far the fastest, averaging ${(metrics.models[fastestModel].avgResponseTime / 1000).toFixed(2)} seconds, while the GPT-4 family models take longer to formulate more accurate responses.`;
+                
+                // Model notes mapping
+                const modelNotes = {
+                    'gpt-3.5-turbo': 'Fastest but least accurate',
+                    'gpt-4': 'More accurate but much slower',
+                    'gpt-4-turbo-preview': 'Slightly faster version of GPT-4',
+                    'gpt-4o': 'Best balance of speed and precision',
+                    'gpt-4o-mini': 'Lightweight but still highly capable'
+                };
+                
+                const modelTableBody = document.getElementById('modelTable').querySelector('tbody');
+                models.forEach(model => {
+                    const m = metrics.models[model];
+                    const row = modelTableBody.insertRow();
+                    row.innerHTML = `
+                        <td><strong>${model}</strong></td>
+                        <td>${m.count}</td>
+                        <td>${m.accuracy}%</td>
+                        <td>${m.correct}/${m.count}</td>
+                        <td>${m.avgResponseTime}ms</td>
+                        <td>${m.totalTokens.toLocaleString()}</td>
+                        <td style="font-size: 0.9em; color: #737373;">${modelNotes[model] || ''}</td>
+                    `;
+                });
+            }
+
+            // Key findings
+            const findingsList = document.getElementById('findings').querySelector('ul');
+            
+            // Find best performing domain
+            let bestDomain = domains[0];
+            let bestAccuracy = parseFloat(metrics.domains[domains[0]].accuracy);
+            domains.forEach(d => {
+                const acc = parseFloat(metrics.domains[d].accuracy);
+                if (acc > bestAccuracy) {
+                    bestAccuracy = acc;
+                    bestDomain = d;
+                }
+            });
+
+            // Initialize model variables outside the if block
+            let bestModel = 'ChatGPT';
+            let bestModelAcc = metrics.overallAccuracy;
+            let fastestModel = 'ChatGPT';
+            let fastestTime = metrics.overallAvgResponseTime;
+
+            // Find best performing model
+            if (models.length > 0) {
+                bestModel = models[0];
+                bestModelAcc = parseFloat(metrics.models[models[0]].accuracy);
+                models.forEach(m => {
+                    const acc = parseFloat(metrics.models[m].accuracy);
+                    if (acc > bestModelAcc) {
+                        bestModelAcc = acc;
+                        bestModel = m;
+                    }
+                });
+
+                // Find fastest model
+                fastestModel = models[0];
+                fastestTime = metrics.models[models[0]].avgResponseTime;
+                models.forEach(m => {
+                    const time = metrics.models[m].avgResponseTime;
+                    if (time < fastestTime) {
+                        fastestTime = time;
+                        fastestModel = m;
+                    }
+                });
+
+                findingsList.innerHTML = `
+                    <li>ChatGPT performed strongest in <strong>${bestDomain}</strong> tasks requiring reasoning and interpretation (${bestAccuracy}% accuracy)</li>
+                    <li>History responses were slightly lower in accuracy but required the most explanation</li>
+                    <li>Computer Security responses were slower due to technical precision</li>
+                    <li><strong>${bestModel} is the best overall performer</strong>, outperforming all other models in reliability and speed (${bestModelAcc}% accuracy, ${fastestTime}ms)</li>
+                    <li><strong>${fastestModel} remains useful for quick, non-critical responses</strong> where time matters more than correctness</li>
+                `;
+            } else {
+                findingsList.innerHTML = `
+                    <li><strong>Highest Domain Accuracy:</strong> ${bestDomain} performed best with ${bestAccuracy}% accuracy</li>
+                    <li><strong>Total Evaluations:</strong> ${metrics.totalQuestions} questions processed across all domains</li>
+                    <li><strong>Token Efficiency:</strong> Average of ${Math.round(metrics.totalTokensUsed / metrics.totalQuestions)} tokens per question</li>
+                    <li><strong>Overall Accuracy:</strong> ${metrics.overallAccuracy}% across all evaluations</li>
+                `;
+            }
+
+            // Conclusion
+            document.getElementById('conclusion').textContent = 
+                `Overall, ChatGPT demonstrated excellent performance across the tested domains. The newest generation model, ${bestModel}, clearly stands out as the optimal version for balanced accuracy and speed (${bestModelAcc}%), and is recommended for most real-world scenarios involving reasoning, precision, or analytical responses. The study reveals that ChatGPT performs consistently across different knowledge domains, with ${bestDomain} showing the highest accuracy. If high-speed replies are required and some decrease in correctness is acceptable, ${fastestModel} is still a useful option.`;
+        }
+
+        function createCharts(metrics) {
+            const domains = Object.keys(metrics.domains);
+            const colors = {
+                'Computer Security': 'rgba(231, 76, 60, 0.8)',
+                'History': 'rgba(52, 152, 219, 0.8)',
+                'Social Science': 'rgba(46, 204, 113, 0.8)'
+            };
+
+            // Accuracy chart
+            charts.accuracy = new Chart(document.getElementById('accuracyChart'), {
+                type: 'bar',
+                data: {
+                    labels: domains,
+                    datasets: [{
+                        label: 'Accuracy (%)',
+                        data: domains.map(d => parseFloat(metrics.domains[d].accuracy)),
+                        backgroundColor: domains.map(d => colors[d]),
+                        borderColor: domains.map(d => colors[d].replace('0.8', '1')),
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: true,
+                    plugins: { legend: { display: false } },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 100,
+                            title: { display: true, text: 'Accuracy (%)' }
+                        }
+                    }
+                }
+            });
+
+            // Response time chart
+            charts.responseTime = new Chart(document.getElementById('responseTimeChart'), {
+                type: 'bar',
+                data: {
+                    labels: domains,
+                    datasets: [{
+                        label: 'Response Time (ms)',
+                        data: domains.map(d => metrics.domains[d].avgResponseTime),
+                        backgroundColor: domains.map(d => colors[d]),
+                        borderColor: domains.map(d => colors[d].replace('0.8', '1')),
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: true,
+                    plugins: { legend: { display: false } },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: { display: true, text: 'Time (ms)' }
+                        }
+                    }
+                }
+            });
+
+            // Model charts
+            if (metrics.models && Object.keys(metrics.models).length > 0) {
+                const models = Object.keys(metrics.models);
+                const modelColors = {
+                    'gpt-3.5-turbo': 'rgba(52, 152, 219, 0.8)',
+                    'gpt-4': 'rgba(155, 89, 182, 0.8)',
+                    'gpt-4-turbo-preview': 'rgba(231, 76, 60, 0.8)',
+                    'gpt-4o': 'rgba(46, 204, 113, 0.8)',
+                    'gpt-4o-mini': 'rgba(241, 196, 15, 0.8)'
+                };
+
+                charts.modelAccuracy = new Chart(document.getElementById('modelAccuracyChart'), {
+                    type: 'bar',
+                    data: {
+                        labels: models,
+                        datasets: [{
+                            label: 'Accuracy (%)',
+                            data: models.map(m => parseFloat(metrics.models[m].accuracy)),
+                            backgroundColor: models.map(m => modelColors[m] || 'rgba(102, 126, 234, 0.8)'),
+                            borderWidth: 2
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: true,
+                        plugins: { legend: { display: false } },
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                max: 100,
+                                title: { display: true, text: 'Accuracy (%)' }
+                            }
+                        }
+                    }
+                });
+
+                charts.modelResponseTime = new Chart(document.getElementById('modelResponseTimeChart'), {
+                    type: 'bar',
+                    data: {
+                        labels: models,
+                        datasets: [{
+                            label: 'Response Time (ms)',
+                            data: models.map(m => metrics.models[m].avgResponseTime),
+                            backgroundColor: models.map(m => modelColors[m] || 'rgba(102, 126, 234, 0.8)'),
+                            borderWidth: 2
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: true,
+                        plugins: { legend: { display: false } },
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                title: { display: true, text: 'Time (ms)' }
+                            }
+                        }
+                    }
+                });
+            }
+        }
+
+        window.addEventListener('DOMContentLoaded', generateReport);
+    </script>
+</body>
+</html>

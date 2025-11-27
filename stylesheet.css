@@ -1,0 +1,464 @@
+
+:root {
+  /* Primary Colors - Minimal Black/Gray Scheme */
+  --primary-color: #1a1a1a;        /* Near Black */
+  --primary-light: #525252;        /* Medium Gray */
+  --primary-dark: #0a0a0a;         /* True Black */
+  
+  /* Accent Colors */
+  --accent-color: #1a1a1a;         /* Near Black */
+  --accent-hover: #404040;         /* Dark Gray */
+  --accent-light: #737373;         /* Medium Gray */
+  
+  /* Success/Highlight Colors */
+  --success-color: #404040;        /* Dark Gray */
+  --highlight-bg: #fafafa;         /* Very Light Gray */
+  --highlight-border: #d4d4d4;     /* Light Gray */
+  
+  /* Neutral Colors */
+  --text-primary: #1a1a1a;         /* Near Black */
+  --text-secondary: #525252;       /* Medium Gray */
+  --text-light: #a3a3a3;           /* Light Gray */
+  --bg-primary: #ffffff;           /* White */
+  --bg-secondary: #fafafa;         /* Very Light Gray */
+  --bg-hover: #f5f5f5;             /* Light Gray */
+  --border-color: #e5e5e5;         /* Border Gray */
+  
+  /* Fonts */
+  --font-primary: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+  --font-headings: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+  --font-mono: 'SF Mono', 'Monaco', 'Consolas', 'Courier New', monospace;
+}
+
+/* === RESET & BASE STYLES === */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-primary);
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--text-primary);
+  background: #f5f5f5;
+  background-attachment: fixed;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* === TYPOGRAPHY === */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-headings);
+  font-weight: 600;
+  line-height: 1.3;
+  margin-bottom: 0.5em;
+  color: var(--primary-color);
+}
+
+h2 {
+  font-size: 2em;
+  margin-top: 1em;
+  margin-bottom: 0.8em;
+  border-bottom: none;
+  padding-bottom: 0.4em;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+h3 {
+  font-size: 1.5em;
+  margin-top: 0.8em;
+  margin-bottom: 0.6em;
+  color: var(--primary-light);
+}
+
+h4 {
+  font-size: 1.2em;
+  margin-top: 0.5em;
+  color: var(--accent-color);
+}
+
+p {
+  margin-bottom: 1em;
+  line-height: 1.8;
+}
+
+/* Name styling */
+.name {
+  font-size: 2.5em;
+  font-weight: 600;
+  color: var(--primary-color);
+  margin-bottom: 0.3em;
+  font-family: var(--font-headings);
+  letter-spacing: -0.03em;
+}
+
+/* === LINKS === */
+a {
+  color: var(--accent-color);
+  text-decoration: none;
+  transition: all 0.3s ease;
+  border-bottom: 1px solid transparent;
+}
+
+a:hover {
+  color: var(--accent-hover);
+  border-bottom-color: var(--accent-hover);
+}
+
+a:visited {
+  color: var(--primary-light);
+}
+
+/* Paper title links - special styling */
+.papertitle {
+  font-size: 1.1em;
+  font-weight: 600;
+  color: var(--primary-color);
+  transition: color 0.3s ease;
+}
+
+a:hover .papertitle {
+  color: var(--accent-color);
+}
+
+/* === LISTS === */
+ul {
+  margin-bottom: 1em;
+}
+
+ul li {
+  margin-bottom: 0.8em;
+  line-height: 1.7;
+}
+
+ul li strong {
+  color: var(--primary-color);
+  font-weight: 600;
+}
+
+/* === TABLES === */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+td {
+  padding: 15px;
+  vertical-align: top;
+}
+
+/* === IMAGES === */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Profile photo styling */
+td img[alt="profile photo"] {
+  border-radius: 50%;
+  border: none;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+td img[alt="profile photo"]:hover {
+  transform: scale(1.02);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+/* Other images */
+td img:not([alt="profile photo"]) {
+  border-radius: 6px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+/* === HIGHLIGHTING === */
+.highlight {
+  background-color: var(--highlight-bg);
+  padding: 2px 6px;
+  border-radius: 3px;
+  border-left: 3px solid var(--highlight-border);
+}
+
+/* === CONTAINERS & LAYOUT === */
+body > table {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+/* Section spacing */
+table[style*="width:100%"] tbody tr td {
+  padding: 20px;
+}
+
+/* === CHART PLACEHOLDERS === */
+div[style*="border: 2px dashed"] {
+  border: 2px dashed var(--border-color) !important;
+  background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-hover) 100%) !important;
+  border-radius: 12px !important;
+  padding: 40px !important;
+  min-height: 300px !important;
+  transition: all 0.3s ease;
+}
+
+div[style*="border: 2px dashed"]:hover {
+  border-color: var(--accent-light) !important;
+  box-shadow: 0 4px 12px rgba(52, 152, 219, 0.1);
+  transform: translateY(-2px);
+}
+
+/* === KEY FINDINGS BOX === */
+div[style*="background-color: #f0f8ff"] {
+  background: linear-gradient(135deg, #e8f4f8 0%, #f0f8ff 100%) !important;
+  border-left: 5px solid var(--success-color) !important;
+  padding: 25px !important;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  margin: 20px 0 !important;
+}
+
+/* === CONTACT LINKS === */
+p[style*="text-align:center"] a {
+  display: inline-block;
+  padding: 0;
+  margin: 0 12px;
+  background-color: transparent;
+  border-radius: 0;
+  transition: all 0.2s ease;
+  border-bottom: 1px solid transparent;
+}
+
+p[style*="text-align:center"] a:hover {
+  background-color: transparent;
+  color: var(--primary-color);
+  transform: none;
+  box-shadow: none;
+  border-bottom: 1px solid var(--primary-color);
+}
+
+/* === HOVER EFFECTS === */
+.one {
+  position: relative;
+  width: 160px;
+  height: 160px;
+}
+
+.two {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.one:hover .two {
+  opacity: 1;
+}
+
+/* === RESPONSIVE DESIGN === */
+@media screen and (max-width: 768px) {
+  body {
+    font-size: 14px;
+  }
+  
+  .name {
+    font-size: 2em;
+  }
+  
+  h2 {
+    font-size: 1.6em;
+  }
+  
+  h3 {
+    font-size: 1.3em;
+  }
+  
+  td {
+    padding: 10px;
+  }
+  
+  /* Stack profile image and text vertically on mobile */
+  table tbody tr td[style*="width:63%"],
+  table tbody tr td[style*="width:40%"] {
+    display: block;
+    width: 100% !important;
+    text-align: center;
+  }
+  
+  /* Chart placeholders on mobile */
+  tr td[style*="width:50%"] {
+    display: block;
+    width: 100% !important;
+  }
+}
+
+/* === UTILITY CLASSES === */
+.text-center {
+  text-align: center;
+}
+
+.mt-1 { margin-top: 1em; }
+.mt-2 { margin-top: 2em; }
+.mb-1 { margin-bottom: 1em; }
+.mb-2 { margin-bottom: 2em; }
+
+/* === ACCESSIBILITY === */
+a:focus,
+button:focus {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 2px;
+}
+
+/* === PRINT STYLES === */
+@media print {
+  body {
+    background: white;
+    color: black;
+    font-size: 12pt;
+  }
+  
+  a {
+    color: black;
+    text-decoration: underline;
+  }
+  
+  .no-print {
+    display: none;
+  }
+}
+
+/* === SCROLLBAR STYLING (Webkit browsers) === */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #d4d4d4;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #a3a3a3;
+}
+
+/* === SMOOTH SCROLLING === */
+html {
+  scroll-behavior: smooth;
+}
+
+/* === NAVIGATION ENHANCEMENTS === */
+#main-navigation {
+  animation: slideDown 0.5s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.nav-link {
+  position: relative;
+  overflow: hidden;
+}
+
+.nav-link:hover {
+  background: rgba(0, 0, 0, 0.04) !important;
+  color: #1a1a1a !important;
+}
+
+/* Page section animations */
+.page-section {
+  animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* === SECTION DIVIDERS === */
+table + table {
+  margin-top: 40px;
+}
+
+/* === FOOTER === */
+table:last-of-type {
+  margin-bottom: 60px;
+}
+
+p[style*="text-align:center"][style*="font-size:small"] {
+  padding: 30px 0;
+  border-top: 1px solid var(--border-color);
+  margin-top: 40px;
+}
+
+/* === ENHANCED BUTTON STYLES === */
+.btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: var(--accent-color);
+  color: white;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.btn:hover {
+  background-color: var(--accent-hover);
+  transform: none;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+  color: white;
+  border-bottom: none;
+}
+
+/* === CODE BLOCKS === */
+code {
+  font-family: var(--font-mono);
+  background-color: var(--bg-secondary);
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-size: 0.9em;
+  color: var(--primary-color);
+}
+
+/* === STRONG/BOLD TEXT === */
+strong {
+  font-weight: 600;
+  color: var(--primary-color);
+}
+
+/* === SELECTION === */
+::selection {
+  background-color: #1a1a1a;
+  color: white;
+}
+
+::-moz-selection {
+  background-color: #1a1a1a;
+  color: white;
+}

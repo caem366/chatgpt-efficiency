@@ -1,0 +1,76 @@
+{
+  "totalQuestions": 1616,
+  "correctAnswers": 1388,
+  "totalResponseTime": 3576627,
+  "totalTokens": 311491,
+  "domains": {
+    "History": {
+      "count": 645,
+      "correct": 544,
+      "totalResponseTime": 1421321,
+      "totalTokens": 123262,
+      "accuracy": "84.34",
+      "avgResponseTime": 2204
+    },
+    "Social Science": {
+      "count": 583,
+      "correct": 514,
+      "totalResponseTime": 1278002,
+      "totalTokens": 114777,
+      "accuracy": "88.16",
+      "avgResponseTime": 2192
+    },
+    "Computer Security": {
+      "count": 388,
+      "correct": 330,
+      "totalResponseTime": 877304,
+      "totalTokens": 73452,
+      "accuracy": "85.05",
+      "avgResponseTime": 2261
+    }
+  },
+  "overallAccuracy": "85.89",
+  "avgResponseTime": 2213,
+  "models": {
+    "gpt-3.5-turbo": {
+      "count": 400,
+      "correct": 298,
+      "totalResponseTime": 361949,
+      "totalTokens": 73032,
+      "accuracy": "74.50",
+      "avgResponseTime": 905
+    },
+    "gpt-4": {
+      "count": 523,
+      "correct": 467,
+      "totalResponseTime": 1587074,
+      "totalTokens": 105812,
+      "accuracy": "89.29",
+      "avgResponseTime": 3035
+    },
+    "gpt-4-turbo-preview": {
+      "count": 350,
+      "correct": 313,
+      "totalResponseTime": 1048747,
+      "totalTokens": 69439,
+      "accuracy": "89.43",
+      "avgResponseTime": 2996
+    },
+    "gpt-4o": {
+      "count": 193,
+      "correct": 180,
+      "totalResponseTime": 345011,
+      "totalTokens": 34867,
+      "accuracy": "93.26",
+      "avgResponseTime": 1788
+    },
+    "gpt-4o-mini": {
+      "count": 150,
+      "correct": 130,
+      "totalResponseTime": 233846,
+      "totalTokens": 28341,
+      "accuracy": "86.67",
+      "avgResponseTime": 1559
+    }
+  }
+}
