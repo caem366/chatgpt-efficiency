@@ -1,4 +1,4 @@
-# Quick Start Guide - Hash-Based Navigation
+# Quick Start Guide
 
 ## 🚀 Getting Started (3 Simple Steps)
 
