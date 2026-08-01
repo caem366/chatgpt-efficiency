@@ -19,20 +19,3 @@ Server running on http://localhost:3000
 
 ### Step 3: Open in Browser
 Navigate to: `http://localhost:3000`
-
----
-
-## 🧭 Navigation Overview
-
-Your website now has **5 sections** accessible via hash URLs:
-
-| Section | URL | Icon | Description |
-|---------|-----|------|-------------|
-| **Home** | `/#home` | 🏠 | Main landing page with profile |
-| **About** | `/#about` | 👤 | Professional bio & technical skills |
-| **Education** | `/#education` | 🎓 | Academic background & certifications |
-| **Experience** | `/#experience` | 💼 | Work experience & projects |
-| **Project** | `/#project` | 🚀 | ChatGPT evaluation project details |
-
----
-
