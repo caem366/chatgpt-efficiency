@@ -19,13 +19,9 @@
       <div style="max-width: 1200px; margin: 0 auto; padding: 16px 24px;">
         <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
           <div style="color: #1a1a1a; font-size: 1.25em; font-weight: 600; margin-bottom: 10px; letter-spacing: -0.02em;">
-            <span style="cursor: pointer;" onclick="navigateToSection('home')">Portfolio</span>
+            <span style="cursor: pointer;" onclick="navigateToSection('project')">ChatGPT Efficiency</span>
           </div>
           <div id="nav-links" style="display: flex; gap: 2px; flex-wrap: wrap;">
-            <a href="#home" class="nav-link" style="color: #525252; padding: 8px 16px; text-decoration: none; border-radius: 6px; transition: all 0.2s ease; background: transparent; font-size: 0.95em; font-weight: 500;">Home</a>
-            <a href="#about" class="nav-link" style="color: #525252; padding: 8px 16px; text-decoration: none; border-radius: 6px; transition: all 0.2s ease; background: transparent; font-size: 0.95em; font-weight: 500;">About</a>
-            <a href="#education" class="nav-link" style="color: #525252; padding: 8px 16px; text-decoration: none; border-radius: 6px; transition: all 0.2s ease; background: transparent; font-size: 0.95em; font-weight: 500;">Education</a>
-            <a href="#experience" class="nav-link" style="color: #525252; padding: 8px 16px; text-decoration: none; border-radius: 6px; transition: all 0.2s ease; background: transparent; font-size: 0.95em; font-weight: 500;">Experience</a>
             <a href="#project" class="nav-link" style="color: #525252; padding: 8px 16px; text-decoration: none; border-radius: 6px; transition: all 0.2s ease; background: transparent; font-size: 0.95em; font-weight: 500;">Project</a>
             <a href="#results" class="nav-link" style="color: #525252; padding: 8px 16px; text-decoration: none; border-radius: 6px; transition: all 0.2s ease; background: transparent; font-size: 0.95em; font-weight: 500;">Results</a>
             <a href="report.html" target="_blank" style="color: #525252; padding: 8px 16px; text-decoration: none; border-radius: 6px; transition: all 0.2s ease; background: transparent; font-size: 0.95em; font-weight: 500; border: 1px solid #e5e5e5;">📄 Report</a>
@@ -50,7 +46,7 @@
         <!-- Message Content -->
         <div id="message-content" style="margin-top: 0px; padding-right: 20px;">
           <h4 style="margin: 0 0 10px 0; color: #1a1a1a; font-size: 0.95em; font-weight: 600;">Guide</h4>
-          <p id="rotating-message" style="margin: 0; color: #525252; line-height: 1.5; font-size: 0.875em;">Welcome to my portfolio! Use the navigation menu to explore different sections.</p>
+          <p id="rotating-message" style="margin: 0; color: #525252; line-height: 1.5; font-size: 0.875em;">Welcome to the ChatGPT Efficiency project. Use the navigation menu to view the project, results, or report.</p>
         </div>
         
         <!-- Progress Dots -->
@@ -74,284 +70,6 @@
     <table style="width:100%;max-width:1200px;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto; margin-top: 32px; margin-bottom: 40px;"><tbody>
       <tr style="padding:0px">
         <td style="padding:48px; background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(20px) saturate(180%); -webkit-backdrop-filter: blur(20px) saturate(180%); border-radius: 16px; box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1); border: 1px solid rgba(255, 255, 255, 0.18);">
-          
-          <!-- HOME SECTION -->
-          <section id="home" class="page-section">
-          <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-            <tr style="padding:0px">
-              <td style="padding:2.5%;width:63%;vertical-align:middle">
-                <p class="name" style="text-align: center; color: #1a1a1a; font-weight: 600; letter-spacing: -0.03em;">
-                  Caelan Mason
-                </p>
-                <div style="background: rgba(250, 250, 250, 0.5); backdrop-filter: blur(10px) saturate(180%); -webkit-backdrop-filter: blur(10px) saturate(180%); padding: 24px; border-radius: 12px; margin-bottom: 20px; border: 1px solid rgba(255, 255, 255, 0.18); box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);">
-                  <p style="margin-bottom: 12px;"><strong style="color: #1a1a1a; font-size: 1em; font-weight: 600;">Professional Bio</strong></p>
-                  <p style="color: #525252; line-height: 1.7; font-size: 0.95em;">[Add your professional bio here - describe your academic background, current role, and professional interests. For example: "I'm a computer science student at [University Name], currently pursuing [degree program]. My academic interests include web development, artificial intelligence, and software engineering."]</p>
-                </div>
-                <div style="background: rgba(250, 250, 250, 0.5); backdrop-filter: blur(10px) saturate(180%); -webkit-backdrop-filter: blur(10px) saturate(180%); padding: 24px; border-radius: 12px; margin-bottom: 20px; border: 1px solid rgba(255, 255, 255, 0.18); box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);">
-                  <p style="margin-bottom: 12px;"><strong style="color: #1a1a1a; font-size: 1em; font-weight: 600;">Technical Background</strong></p>
-                  <p style="color: #525252; line-height: 1.7; font-size: 0.95em;">I have experience with web technologies including HTML, CSS, and JavaScript. I'm proficient in backend development with Node.js and database management with MongoDB. I have hands-on experience integrating APIs, particularly the ChatGPT API, and conducting research on AI efficiency and performance evaluation. I'm passionate about combining modern web design with innovative AI technologies to create meaningful research projects.</p>
-                </div>
-                <p style="text-align:center; margin-top: 28px;">
-                  <a href="mailto:your.email@example.com" style="margin: 0 12px; color: #525252; text-decoration: none; font-size: 0.9em;">Email</a>
-                  <a href="https://github.com/yourusername" style="margin: 0 12px; color: #525252; text-decoration: none; font-size: 0.9em;">Github</a>
-                  <a href="https://linkedin.com/in/yourprofile" style="margin: 0 12px; color: #525252; text-decoration: none; font-size: 0.9em;">LinkedIn</a>
-                </p>
-              </td>
-              <td style="padding:2.5%;width:40%;max-width:40%">
-                <div style="width:100%;max-width:100%;aspect-ratio:1;background:#e5e5e5;border-radius:50%;display:flex;align-items:center;justify-content:center;">
-                  <svg width="60%" height="60%" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="12" cy="12" r="10" stroke="#a3a3a3" stroke-width="1.5"/>
-                    <circle cx="12" cy="9" r="3" fill="#a3a3a3"/>
-                    <path d="M6.5 18.5C7.5 16 9.5 14.5 12 14.5C14.5 14.5 16.5 16 17.5 18.5" stroke="#a3a3a3" stroke-width="1.5" stroke-linecap="round"/>
-                  </svg>
-                </div>
-              </td>
-            </tr>
-          </tbody></table>
-          
-          <!-- Project Introduction -->
-          <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-              <tr>
-              <td style="padding:30px 20px;width:100%;vertical-align:middle;background: linear-gradient(to bottom, #ffffff 0%, #f8f9fa 100%);">
-                <h2>Introduction</h2>
-                <p style="font-size: 1.05em; line-height: 1.9;">
-                  This project represents the convergence of modern web design principles and artificial intelligence evaluation methodologies. The primary objective is to develop a comprehensive web-based platform that not only demonstrates proficiency in contemporary web technologies but also serves as a research tool for evaluating the efficiency and performance of ChatGPT across diverse question domains. By integrating MongoDB for robust data management, Node.js for server-side processing, and the ChatGPT API for natural language processing capabilities, this project creates a unique framework for assessing AI response quality, accuracy, and efficiency. The web interface provides an intuitive and visually appealing platform to present research findings, while the backend infrastructure enables systematic data collection and analysis. This dual-purpose approach allows for both the demonstration of full-stack web development skills and the generation of meaningful insights into ChatGPT's performance characteristics across different subject areas including History, Social Science, and Computer Security.
-                </p>
-              </td>
-            </tr>
-          </tbody></table>
-          </section>
-          <!-- END HOME SECTION -->
-          
-          <!-- ABOUT SECTION -->
-          <section id="about" class="page-section" style="display:none;">
-          <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;margin-top:24px;"><tbody>
-            <tr>
-              <td style="padding:32px 0px;width:100%;vertical-align:middle;background: transparent; border-radius:0px; box-shadow: none; border: none; border-bottom: none;">
-                <h2 style="color: #1a1a1a; font-size: 2em; margin-bottom: 0.2em; font-weight: 600; letter-spacing: -0.03em;">About</h2>
-                <p style="color: #737373; font-size: 0.95em; font-weight: 400;">Professional background and technical expertise</p>
-              </td>
-            </tr>
-          </tbody></table>
-          
-          <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-            <tr style="background-color: #ffffff;">
-              <td style="padding:30px;width:100%;vertical-align:middle;">
-                <h3 style="color: #1a1a1a; border-left: none; padding-left: 0px; font-weight: 600;">Professional Bio</h3>
-                <div style="background: rgba(250, 250, 250, 0.5); backdrop-filter: blur(10px) saturate(180%); -webkit-backdrop-filter: blur(10px) saturate(180%); padding: 24px; border-radius: 12px; margin: 20px 0; border: 1px solid rgba(255, 255, 255, 0.18); box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);">
-                  <p style="color: #525252; line-height: 1.7; font-size: 1em;">
-                    I am a dedicated computer science student with a passion for web development and artificial intelligence. My academic journey has equipped me with strong analytical and problem-solving skills, and I'm constantly seeking to expand my knowledge in emerging technologies. I believe in creating meaningful solutions that bridge the gap between innovative technology and real-world applications.
-                  </p>
-                </div>
-                
-                <h3 style="color: #1a1a1a; border-left: none; padding-left: 0px; margin-top: 32px; font-weight: 600;">Technical Skills</h3>
-                <div style="background: rgba(250, 250, 250, 0.5); backdrop-filter: blur(10px) saturate(180%); -webkit-backdrop-filter: blur(10px) saturate(180%); padding: 24px; border-radius: 12px; margin: 20px 0; border: 1px solid rgba(255, 255, 255, 0.18); box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);">
-                  <div style="margin-bottom: 20px;">
-                    <h4 style="color: #1a1a1a; margin-bottom: 8px; font-weight: 600; font-size: 1em;">Frontend Development</h4>
-                    <p style="color: #525252; line-height: 1.7; font-size: 0.95em;">HTML5, CSS3, JavaScript (ES6+), Responsive Web Design, Bootstrap, Modern UI/UX Principles</p>
-                  </div>
-                  <div style="margin-bottom: 20px;">
-                    <h4 style="color: #1a1a1a; margin-bottom: 8px; font-weight: 600; font-size: 1em;">Backend Development</h4>
-                    <p style="color: #525252; line-height: 1.7; font-size: 0.95em;">Node.js, Express.js, RESTful API Design, Server-side JavaScript, Middleware Implementation</p>
-                  </div>
-                  <div style="margin-bottom: 20px;">
-                    <h4 style="color: #1a1a1a; margin-bottom: 8px; font-weight: 600; font-size: 1em;">Database Management</h4>
-                    <p style="color: #525252; line-height: 1.7; font-size: 0.95em;">MongoDB, NoSQL Database Design, Data Modeling, CRUD Operations, Database Optimization</p>
-                  </div>
-                  <div style="margin-bottom: 20px;">
-                    <h4 style="color: #1a1a1a; margin-bottom: 8px; font-weight: 600; font-size: 1em;">AI & API Integration</h4>
-                    <p style="color: #525252; line-height: 1.7; font-size: 0.95em;">ChatGPT API, Natural Language Processing, API Authentication, Performance Analysis, Data Collection</p>
-                  </div>
-                  <div>
-                    <h4 style="color: #1a1a1a; margin-bottom: 8px; font-weight: 600; font-size: 1em;">Tools & Technologies</h4>
-                    <p style="color: #525252; line-height: 1.7; font-size: 0.95em;">Git/GitHub, VS Code, npm, Postman, Chrome DevTools, Command Line/Terminal</p>
-                  </div>
-                </div>
-                
-                <h3 style="color: #1a1a1a; border-left: none; padding-left: 0px; margin-top: 32px; font-weight: 600;">Interests & Goals</h3>
-                <div style="background: rgba(250, 250, 250, 0.5); backdrop-filter: blur(10px) saturate(180%); -webkit-backdrop-filter: blur(10px) saturate(180%); padding: 24px; border-radius: 12px; margin: 20px 0; border: 1px solid rgba(255, 255, 255, 0.18); box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);">
-                  <ul style="margin-left: 20px; color: #525252; line-height: 1.8; font-size: 0.95em;">
-                    <li>Building scalable and efficient web applications</li>
-                    <li>Exploring artificial intelligence and machine learning applications</li>
-                    <li>Contributing to open-source projects</li>
-                    <li>Staying current with emerging web technologies and best practices</li>
-                    <li>Creating user-centric digital experiences</li>
-                  </ul>
-                </div>
-              </td>
-            </tr>
-          </tbody></table>
-          </section>
-          <!-- END ABOUT SECTION -->
-          
-          <!-- EDUCATION SECTION -->
-          <section id="education" class="page-section" style="display:none;">
-          <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;margin-top:24px;"><tbody>
-            <tr>
-              <td style="padding:32px 0px;width:100%;vertical-align:middle;background: transparent;border-radius:0px;box-shadow: none; border: none; border-bottom: none;">
-                <h2 style="color: #1a1a1a; font-size: 2em; margin-bottom: 0.2em; font-weight: 600; letter-spacing: -0.03em;">Education</h2>
-                <p style="color: #737373; font-size: 0.95em; font-weight: 400;">Academic background and achievements</p>
-              </td>
-            </tr>
-          </tbody></table>
-          
-          <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-            <tr style="background-color: #ffffff;">
-              <td style="padding:30px;width:100%;vertical-align:middle;">
-                
-                <!-- University Education -->
-                <div style="background: rgba(250, 250, 250, 0.5); backdrop-filter: blur(10px) saturate(180%); -webkit-backdrop-filter: blur(10px) saturate(180%); padding: 24px; border-radius: 12px; margin-bottom: 24px; border: 1px solid rgba(255, 255, 255, 0.18); box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);">
-                  <div style="display: flex; justify-content: space-between; align-items: start; flex-wrap: wrap; margin-bottom: 16px;">
-                    <div>
-                      <h3 style="color: #1a1a1a; margin-bottom: 6px; font-weight: 600; font-size: 1.15em;">Bachelor of Arts in Information Technology</h3>
-                      <p style="color: #1a1a1a; font-size: 1em; font-weight: 500; margin-bottom: 4px;">York University</p>
-                      <p style="color: #737373; font-style: normal; font-size: 0.9em;">Expected Graduation: [Month Year]</p>
-                    </div>
-                    <div style="background: #1a1a1a; color: white; padding: 6px 14px; border-radius: 6px; font-weight: 500; font-size: 0.9em;">
-                      GPA: [X.XX/4.0]
-                    </div>
-                  </div>
-                  
-                  <h4 style="color: #1a1a1a; margin-top: 20px; margin-bottom: 12px; font-weight: 600; font-size: 1em;">Relevant Coursework:</h4>
-                  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 8px;">
-                    <div style="background: #ffffff; padding: 10px 12px; border-radius: 6px; border-left: 1px solid #e5e5e5; border: none; font-size: 0.9em; color: #525252;">
-                      Web Development
-                    </div>
-                    <div style="background: #ffffff; padding: 10px 12px; border-radius: 6px; border-left: 2px solid #1a1a1a; border: 1px solid #e5e5e5; font-size: 0.9em; color: #525252;">
-                      Database Systems
-                    </div>
-                    <div style="background: #ffffff; padding: 10px 12px; border-radius: 6px; border-left: 2px solid #1a1a1a; border: 1px solid #e5e5e5; font-size: 0.9em; color: #525252;">
-                      Data Structures & Algorithms
-                    </div>
-                    <div style="background: #ffffff; padding: 10px 12px; border-radius: 6px; border-left: 2px solid #1a1a1a; border: 1px solid #e5e5e5; font-size: 0.9em; color: #525252;">
-                      Artificial Intelligence
-                    </div>
-                    <div style="background: #ffffff; padding: 10px 12px; border-radius: 6px; border-left: 2px solid #1a1a1a; border: 1px solid #e5e5e5; font-size: 0.9em; color: #525252;">
-                      Computer Security
-                    </div>
-                    <div style="background: #ffffff; padding: 10px 12px; border-radius: 6px; border-left: 2px solid #1a1a1a; border: 1px solid #e5e5e5; font-size: 0.9em; color: #525252;">
-                      Software Engineering
-                    </div>
-                  </div>
-                  
-                  <h4 style="color: #1a1a1a; margin-top: 20px; margin-bottom: 12px; font-weight: 600; font-size: 1em;">Academic Achievements:</h4>
-                  <ul style="margin-left: 20px; color: #525252; line-height: 1.8; font-size: 0.95em;">
-                    <li>Dean's List [Semester/Year] (if applicable)</li>
-                    <li>Member of [Computer Science/Tech Club]</li>
-                    <li>Participated in [Hackathons/Programming Competitions]</li>
-                    <li>Completed advanced coursework in Web Technologies</li>
-                  </ul>
-                </div>
-                
-                <!-- Certifications/Additional Training -->
-                <div style="background: rgba(250, 250, 250, 0.5); backdrop-filter: blur(10px) saturate(180%); -webkit-backdrop-filter: blur(10px) saturate(180%); padding: 24px; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.18); box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);">
-                  <h3 style="color: #1a1a1a; margin-bottom: 16px; font-weight: 600; font-size: 1.15em;">Certifications & Training</h3>
-                  <ul style="margin-left: 20px; color: #525252; line-height: 1.8; font-size: 0.95em;">
-                    <li><strong>Web Development:</strong> HTML, CSS, JavaScript, and modern frameworks</li>
-                    <li><strong>Backend Development:</strong> Node.js and Express.js fundamentals</li>
-                    <li><strong>Database Management:</strong> MongoDB and NoSQL database design</li>
-                    <li><strong>API Development:</strong> RESTful API design and implementation</li>
-                    <li><strong>Version Control:</strong> Git and GitHub collaboration</li>
-                  </ul>
-                </div>
-                
-              </td>
-            </tr>
-          </tbody></table>
-          </section>
-          <!-- END EDUCATION SECTION -->
-          
-          <!-- EXPERIENCE SECTION -->
-          <section id="experience" class="page-section" style="display:none;">
-          <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;margin-top:24px;"><tbody>
-            <tr>
-              <td style="padding:32px 0px;width:100%;vertical-align:middle;background: transparent;border-radius:0px;box-shadow: none; border: none; border-bottom: none;">
-                <h2 style="color: #1a1a1a; font-size: 2em; margin-bottom: 0.2em; font-weight: 600; letter-spacing: -0.03em;">Experience</h2>
-                <p style="color: #737373; font-size: 0.95em; font-weight: 400;">Professional and academic experience</p>
-              </td>
-            </tr>
-          </tbody></table>
-          
-          <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-            <tr style="background-color: #ffffff;">
-              <td style="padding:30px;width:100%;vertical-align:middle;">
-                
-                <!-- Experience Item 1 -->
-                <div style="background: rgba(250, 250, 250, 0.5); backdrop-filter: blur(10px) saturate(180%); -webkit-backdrop-filter: blur(10px) saturate(180%); padding: 24px; border-radius: 12px; margin-bottom: 24px; border: 1px solid rgba(255, 255, 255, 0.18); box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);">
-                  <div style="display: flex; justify-content: between; align-items: start; flex-wrap: wrap; margin-bottom: 16px;">
-                    <div style="flex: 1;">
-                      <h3 style="color: #1a1a1a; margin-bottom: 6px; font-weight: 600; font-size: 1.15em;">[Job Title / Role]</h3>
-                      <p style="color: #1a1a1a; font-size: 1em; font-weight: 500; margin-bottom: 4px;">[Company/Organization Name]</p>
-                      <p style="color: #737373; font-style: normal; font-size: 0.9em;">[Start Month Year] - [End Month Year / Present]</p>
-                    </div>
-                  </div>
-                  
-                  <h4 style="color: #1a1a1a; margin-top: 16px; margin-bottom: 12px; font-weight: 600; font-size: 1em;">Key Responsibilities & Achievements:</h4>
-                  <ul style="margin-left: 20px; color: #525252; line-height: 1.8; font-size: 0.95em;">
-                    <li>Developed and maintained web applications using modern technologies</li>
-                    <li>Collaborated with team members on full-stack development projects</li>
-                    <li>Implemented responsive designs and optimized user experiences</li>
-                    <li>Integrated third-party APIs and managed database operations</li>
-                    <li>Participated in code reviews and agile development processes</li>
-                  </ul>
-                  
-                  <div style="margin-top: 16px;">
-                    <strong style="color: #1a1a1a; font-size: 0.95em;">Technologies Used:</strong>
-                    <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px;">
-                      <span style="background: rgba(255, 255, 255, 0.5); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); color: #525252; padding: 6px 12px; border-radius: 6px; font-size: 0.85em; border: 1px solid rgba(255, 255, 255, 0.18);">JavaScript</span>
-                      <span style="background: rgba(255, 255, 255, 0.5); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); color: #525252; padding: 6px 12px; border-radius: 6px; font-size: 0.85em; border: 1px solid rgba(255, 255, 255, 0.18);">Node.js</span>
-                      <span style="background: rgba(255, 255, 255, 0.5); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); color: #525252; padding: 6px 12px; border-radius: 6px; font-size: 0.85em; border: 1px solid rgba(255, 255, 255, 0.18);">HTML/CSS</span>
-                      <span style="background: rgba(255, 255, 255, 0.5); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); color: #525252; padding: 6px 12px; border-radius: 6px; font-size: 0.85em; border: 1px solid rgba(255, 255, 255, 0.18);">MongoDB</span>
-                    </div>
-                  </div>
-                </div>
-                
-                <!-- Experience Item 2 - Projects/Internships -->
-                <div style="background: rgba(250, 250, 250, 0.5); backdrop-filter: blur(10px) saturate(180%); -webkit-backdrop-filter: blur(10px) saturate(180%); padding: 24px; border-radius: 12px; margin-bottom: 24px; border: 1px solid rgba(255, 255, 255, 0.18); box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);">
-                  <div style="display: flex; justify-content: space-between; align-items: start; flex-wrap: wrap; margin-bottom: 16px;">
-                    <div style="flex: 1;">
-                      <h3 style="color: #1a1a1a; margin-bottom: 6px; font-weight: 600; font-size: 1.15em;">Academic Projects & Research</h3>
-                      <p style="color: #1a1a1a; font-size: 1em; font-weight: 500; margin-bottom: 4px;">[University Name] - Various Projects</p>
-                      <p style="color: #737373; font-style: normal; font-size: 0.9em;">[Time Period]</p>
-                    </div>
-                  </div>
-                  
-                  <h4 style="color: #1a1a1a; margin-top: 16px; margin-bottom: 12px; font-weight: 600; font-size: 1em;">Project Highlights:</h4>
-                  <ul style="margin-left: 20px; color: #525252; line-height: 1.8; font-size: 0.95em;">
-                    <li>Built full-stack web applications as part of coursework assignments</li>
-                    <li>Conducted research on ChatGPT efficiency across different domains</li>
-                    <li>Developed RESTful APIs with comprehensive documentation</li>
-                    <li>Created responsive user interfaces following modern design principles</li>
-                    <li>Implemented database schemas and optimized query performance</li>
-                    <li>Collaborated with classmates on group programming projects</li>
-                  </ul>
-                </div>
-                
-                <!-- Skills Summary -->
-                <div style="background: rgba(250, 250, 250, 0.5); backdrop-filter: blur(10px) saturate(180%); -webkit-backdrop-filter: blur(10px) saturate(180%); padding: 24px; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.18); box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);">
-                  <h3 style="color: #1a1a1a; margin-bottom: 16px; font-weight: 600; font-size: 1.15em;">Core Competencies</h3>
-                  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 16px; margin-top: 16px;">
-                    <div>
-                      <h4 style="color: #1a1a1a; margin-bottom: 8px; font-weight: 600; font-size: 1em;">Development Skills</h4>
-                      <p style="color: #525252; line-height: 1.7; font-size: 0.95em;">Full-stack development, API integration, responsive design, code optimization</p>
-                    </div>
-                    <div>
-                      <h4 style="color: #1a1a1a; margin-bottom: 8px; font-weight: 600; font-size: 1em;">Technical Skills</h4>
-                      <p style="color: #525252; line-height: 1.7; font-size: 0.95em;">Problem-solving, debugging, testing, version control, documentation</p>
-                    </div>
-                    <div>
-                      <h4 style="color: #1a1a1a; margin-bottom: 8px; font-weight: 600; font-size: 1em;">Soft Skills</h4>
-                      <p style="color: #525252; line-height: 1.7; font-size: 0.95em;">Team collaboration, communication, time management, adaptability</p>
-                    </div>
-                  </div>
-                </div>
-                
-              </td>
-            </tr>
-          </tbody></table>
-          </section>
-          <!-- END EXPERIENCE SECTION -->
-          
           <!-- PROJECT SECTION -->
           <section id="project" class="page-section" style="display:none;">
           <!-- ChatGPT Evaluation Section -->
@@ -444,7 +162,7 @@
                 <div style="background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(20px) saturate(180%); -webkit-backdrop-filter: blur(20px) saturate(180%); padding: 30px; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.18); box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);">
                   <h4 style="color: #2c3e50; margin-top: 0;">Key Features to Demonstrate:</h4>
                   <ul style="color: #525252; line-height: 1.8; font-size: 1.05em;">
-                    <li><strong>Routing:</strong> Single-page application with smooth navigation between Portfolio, About, Project, and Results sections using hash-based routing</li>
+                    <li><strong>Routing:</strong> Single-page application with smooth navigation between the Project and Results sections using hash-based routing</li>
                     <li><strong>Dynamic Content:</strong> Real-time chart updates and data visualization using Chart.js with glassmorphism design elements</li>
                     <li><strong>Middleware:</strong> Express middleware handling CORS, JSON parsing, static file serving, and request validation for API endpoints</li>
                     <li><strong>WebSocket Interactivity:</strong> Live progress updates during ChatGPT evaluation, broadcasting question processing status to all connected clients in real-time</li>
@@ -1325,7 +1043,7 @@
         messages: [
           {
             title: "👋 Welcome!",
-            text: "I'm your AI portfolio assistant! Click me to learn about the ChatGPT Efficiency Evaluation project and navigate through the sections."
+            text: "I'm your AI project assistant. Click me to learn about the ChatGPT Efficiency Evaluation project and navigate through the remaining sections."
           },
           {
             title: "🚀 Project Overview",
@@ -1349,7 +1067,7 @@
           },
           {
             title: "🧭 Quick Navigation",
-            text: "Use the top menu to jump between sections: Home (bio), Project (technical details), and Results (live data). Click 'Report' to generate a PDF export!"
+            text: "Use the top menu to open Project, Results, or the full Report export."
           },
           {
             title: "📈 Performance Tracking",
@@ -1518,8 +1236,15 @@
 
     <!-- Hash-based Navigation JavaScript -->
     <script>
+      const availableSections = ['project', 'results'];
+      function normalizeSectionId(sectionId) {
+        return availableSections.includes(sectionId) ? sectionId : 'project';
+      }
+
       // Navigation functionality
       function navigateToSection(sectionId) {
+        sectionId = normalizeSectionId(sectionId);
+
         // Hide all sections
         const sections = document.querySelectorAll('.page-section');
         sections.forEach(section => {
@@ -1568,7 +1293,7 @@
       
       // Handle hash changes (back/forward browser buttons)
       window.addEventListener('hashchange', function() {
-        const hash = window.location.hash.substring(1) || 'home';
+        const hash = normalizeSectionId(window.location.hash.substring(1) || 'project');
         navigateToSection(hash);
       });
       
@@ -1602,7 +1327,7 @@
         });
         
         // Initialize - show the correct section based on URL hash
-        const initialHash = window.location.hash.substring(1) || 'home';
+        const initialHash = normalizeSectionId(window.location.hash.substring(1) || 'project');
         navigateToSection(initialHash);
         
         // Add smooth transitions to all sections
@@ -1625,6 +1350,8 @@
       // Enhanced navigation with fade effect
       const originalNavigate = navigateToSection;
       navigateToSection = function(sectionId) {
+        sectionId = normalizeSectionId(sectionId);
+
         const sections = document.querySelectorAll('.page-section');
         
         // Fade out current section
@@ -1659,8 +1386,8 @@
       
       // Console log for debugging
       console.log('Hash-based navigation initialized');
-      console.log('Available sections: home, about, education, experience, project, results');
-      console.log('Current hash:', window.location.hash || '#home');
+      console.log('Available sections: project, results');
+      console.log('Current hash:', window.location.hash || '#project');
     </script>
 
     <!-- Project Page Charts Initialization -->
@@ -2556,3 +2283,4 @@
     </style>
   </body>
 </html>
+

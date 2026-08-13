@@ -20,6 +20,7 @@ app.use(express.static(__dirname));
 // For MongoDB Atlas, use: 'mongodb+srv://username:password@cluster.mongodb.net/'
 const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017';
 const DB_NAME = 'ChatGPT_Evaluation';
+const RESULTS_EXPORT_FILE = path.join(__dirname, 'results-export.json');
 let db;
 let historyCollection;
 let socialScienceCollection;
@@ -123,6 +124,61 @@ function broadcastProgress(data) {
             client.send(message);
         }
     });
+}
+
+function loadExportedMetrics(modelFilter = null) {
+    if (!fs.existsSync(RESULTS_EXPORT_FILE)) {
+        return null;
+    }
+
+    const exported = JSON.parse(fs.readFileSync(RESULTS_EXPORT_FILE, 'utf8'));
+    const selectedModels = modelFilter && exported.models && exported.models[modelFilter]
+        ? { [modelFilter]: exported.models[modelFilter] }
+        : exported.models || {};
+    const source = modelFilter ? selectedModels[modelFilter] : exported;
+    const totalQuestions = source?.count ?? exported.totalQuestions ?? 0;
+    const correctAnswers = source?.correct ?? exported.correctAnswers ?? 0;
+    const totalTokensUsed = source?.totalTokens ?? exported.totalTokens ?? 0;
+    const overallAvgResponseTime = source?.avgResponseTime ?? exported.avgResponseTime ?? 0;
+    const overallAccuracy = totalQuestions > 0
+        ? ((correctAnswers / totalQuestions) * 100).toFixed(2)
+        : '0.00';
+
+    const domains = {};
+    if (!modelFilter && exported.domains) {
+        Object.entries(exported.domains).forEach(([domain, data]) => {
+            domains[domain] = {
+                ...data,
+                successful: data.count,
+                failed: 0,
+                incorrect: data.count - data.correct
+            };
+        });
+    }
+
+    const models = {};
+    Object.entries(selectedModels).forEach(([modelName, data]) => {
+        models[modelName] = {
+            ...data,
+            successful: data.count,
+            failed: 0,
+            incorrect: data.count - data.correct,
+            domains: data.domains || {}
+        };
+    });
+
+    return {
+        totalQuestions,
+        successfulResponses: totalQuestions,
+        failedResponses: 0,
+        correctAnswers,
+        incorrectAnswers: totalQuestions - correctAnswers,
+        overallAccuracy,
+        overallAvgResponseTime,
+        totalTokensUsed,
+        models,
+        domains
+    };
 }
 
 // MongoDB Connection
@@ -718,14 +774,26 @@ app.post('/api/evaluate', async (req, res) => {
 // Get evaluation results
 app.get('/api/results', async (req, res) => {
     try {
+        const modelFilter = req.query.model;
+
         if (!db || !resultsCollection) {
-            return res.status(500).json({ 
-                success: false, 
-                error: 'MongoDB not connected. Please ensure MongoDB is running and restart the server.'
+            const fallbackMetrics = loadExportedMetrics(modelFilter);
+            if (fallbackMetrics) {
+                return res.json({
+                    success: true,
+                    metrics: fallbackMetrics,
+                    results: [],
+                    source: 'results-export.json',
+                    generatedAt: new Date().toISOString()
+                });
+            }
+
+            return res.status(503).json({
+                success: false,
+                error: 'MongoDB not connected and no exported results file was found.'
             });
         }
 
-        const modelFilter = req.query.model;
         const query = modelFilter ? { model: modelFilter } : {};
         const results = await resultsCollection.find(query).toArray();
         
@@ -902,15 +970,19 @@ app.get('/api/questions', async (req, res) => {
 app.get('/api/status', async (req, res) => {
     try {
         if (!db || !historyCollection || !socialScienceCollection || !computerSecurityCollection || !resultsCollection) {
+            const fallbackMetrics = loadExportedMetrics();
             return res.json({
                 success: true,
                 database: {
                     connected: false,
-                    totalQuestions: 0,
-                    processedQuestions: 0,
+                    totalQuestions: fallbackMetrics?.totalQuestions || 0,
+                    processedQuestions: fallbackMetrics?.totalQuestions || 0,
                     unprocessedQuestions: 0,
-                    totalResults: 0,
-                    message: 'MongoDB not connected. Please ensure MongoDB is running.'
+                    totalResults: fallbackMetrics?.totalQuestions || 0,
+                    storageType: fallbackMetrics ? 'results-export.json fallback' : 'none',
+                    message: fallbackMetrics
+                        ? 'MongoDB not connected. Displaying exported results.'
+                        : 'MongoDB not connected. Please ensure MongoDB is running.'
                 }
             });
         }
@@ -1034,7 +1106,6 @@ async function startServer() {
         console.log(`========================================\n`);
         console.log('📋 Available endpoints:');
         console.log('  GET  /                      - Main website');
-        console.log('  GET  /admin.html            - Admin dashboard');
         console.log('  GET  /api/add?a=1&b=2       - Add two numbers');
         console.log('  POST /api/populate          - Populate database from CSV');
         console.log('  POST /api/process           - Process questions with ChatGPT');
